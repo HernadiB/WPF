@@ -1,0 +1,64 @@
+﻿<Window x:Name="Pénzügyi_tanácsadás" x:Class="Penzugyi_tanacsado.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:Penzugyi_tanacsado.Model"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <model:MainWindowViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <Label Content="Karbantartások" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" >
+                <Button Click="megjelenit_Click" Content="Tanácsadások megjelenítése" Name="megjelenit" Height="70" Margin="5" Background="LemonChiffon"/>
+                <Button Click="exportAll_Click" Content="Tanácsadások exportálása" Name="exportAll" Height="70" Margin="5" Background="LemonChiffon"/>
+                <StackPanel Height="auto" Margin="5" Background="LemonChiffon">
+                    <Label Content="Összetett keresés" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Tanácsadó neve:" Margin="2"/>
+                            <TextBox Grid.Column="2" Margin="2" Name="t_nev"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Óradíj alsó határa:" Margin="2"/>
+                            <TextBox Grid.Column="2" Margin="2" Name="also_ar"/>
+                            <Label Grid.Column="0" Content="Óradíj felső határa:" Margin="2"/>
+                            <TextBox Grid.Column="2" Margin="2" Name="felso_ar"/>
+                        </Grid>
+                    </StackPanel>
+                    <Button Click="szures_Click" Content="Keresés" Name="szures" Background="LemonChiffon"/>
+                </StackPanel>
+                <Button Click="ujAdat_Click" Content="Új Tanácsadás felvétele" Name="ujAdat" Height="70" Margin="5" Background="LemonChiffon"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <DataGrid Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" Name="dataGrid1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tanácsadó neve" Binding="{Binding Tanacsado_neve}" Width="*"/>
+                        <DataGridTextColumn Header="Ügyfél neve" Binding="{Binding Ugyfel_neve}" Width="*"/>
+                        <DataGridTextColumn Header="Találkozó dátuma" Binding="{Binding Talalkozo_datuma}" Width="*"/>
+                        <DataGridTextColumn Header="Talalkozó ideje" Binding="{Binding Talalkozo_ideje}" Width="*"/>
+                        <DataGridTextColumn Header="Talalkozó időtartama" Binding="{Binding Talalkozo_idotartama}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Window>
