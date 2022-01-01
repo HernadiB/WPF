@@ -10,7 +10,7 @@
         <model:MainWindowViewModel/>
     </Window.DataContext>
     <StackPanel>
-        <Label Content="Karbantartások" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Label Content="Tanácsadások" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
