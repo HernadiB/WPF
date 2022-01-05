@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Penzugyi_tanacsado
 {
@@ -19,9 +21,32 @@ namespace Penzugyi_tanacsado
     /// </summary>
     public partial class Új_találkozó_felvétele : Window
     {
+        SqlConnection connection = new SqlConnection(@"Data Source=HERNADI;Initial Catalog=tanacsado;Integrated Security=True");
+
+        public List<szakterulet> megnevezes { get; set; }
+
         public Új_találkozó_felvétele()
         {
             InitializeComponent();
+            Bindc();
+        }
+
+        private void Bindc()
+        {
+            tanacsadoEntities tanacs = new tanacsadoEntities();
+            var item = tanacs.szakterulet.ToList();
+            megnevezes = item;
+            DataContext = megnevezes;
+        }
+
+        private void Felvetel(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Megse(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

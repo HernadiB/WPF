@@ -19,7 +19,7 @@
         <TextBox HorizontalAlignment="Left" Name="Talalkozo_ideje" Margin="190,263,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Name="Talalkozo_idotartama" Margin="190,324,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button Content="Felvétel" Name="Talalkozo_felvetel" HorizontalAlignment="Left" Margin="63,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Felvetel"/>
-        <Button Content="Mégse" Name="Megse" HorizontalAlignment="Left" Margin="210,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Megse"/>
+        <Button Content="Mégse" HorizontalAlignment="Left" Margin="210,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Megse"/>
 
     </Grid>
 </Window>

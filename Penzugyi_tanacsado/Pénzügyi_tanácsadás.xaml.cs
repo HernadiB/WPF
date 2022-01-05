@@ -41,7 +41,63 @@ namespace Penzugyi_tanacsado
             DataContext = megnevezes;
         }
 
-        private void FelvetelClick(object sender, RoutedEventArgs e)
+        public void LoadData()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AllData ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+            DataTable dt = new DataTable();
+            connection.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+            dt.Load(sdr);
+            connection.Close();
+            datagrid.ItemsSource = dt.DefaultView;
+        }
+
+        public void Tanacsadasok_megjelenitese(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
+        private void Szures_be(object sender, RoutedEventArgs e)
+        {
+            int alsoH = (int)Convert.ToInt32(Oradij_also_hatara.Text);
+            int felsoH = (int)Convert.ToInt32(Oradij_felso_hatara.Text);
+            int kimeneti = 0;
+            bool isNumberA = int.TryParse(Oradij_also_hatara.Text, out kimeneti);
+            bool isNumberF = int.TryParse(Oradij_felso_hatara.Text, out kimeneti);
+
+            if (!isNumberA || !isNumberF)
+            {
+                MessageBox.Show("Az óradíj csak szám lehet!");
+            }
+            else
+            {
+                if (alsoH < felsoH && alsoH % 1000 == 0 && felsoH % 1000 == 0)
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = ) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+                    DataTable dt = new DataTable();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    dt.Load(sdr);
+                    datagrid.ItemsSource = dt.DefaultView;
+                    connection.Close();
+                }
+                else if (alsoH > felsoH)
+                {
+                    MessageBox.Show("Az alsó határ nagyobb mint a felső határ!");
+                }
+                else if (alsoH % 1000 != 0 || felsoH % 1000 != 0)
+                {
+                    MessageBox.Show("Az alsó és felső határ csak 1000-rel osztható szám lehet!");
+                }
+            }            
+        }
+
+        private void Szures_ki(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
+        private void Felvetel(object sender, RoutedEventArgs e)
         {
             Új_találkozó_felvétele ujTalalkozo = new Új_találkozó_felvétele();
             ujTalalkozo.ShowDialog();
@@ -51,5 +107,7 @@ namespace Penzugyi_tanacsado
         {
             Environment.Exit(0);
         }
+
+
     }
 }
