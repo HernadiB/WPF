@@ -35,7 +35,7 @@ namespace Penzugyi_tanacsado
 
         private void Bindc()
         {
-            tanacsadoEntities tanacs = new tanacsadoEntities();
+            tanacsadoEntities2 tanacs = new tanacsadoEntities2();
             var item = tanacs.szakterulet.ToList();
             megnevezes = item;
             DataContext = megnevezes;
@@ -69,12 +69,17 @@ namespace Penzugyi_tanacsado
             {
                 MessageBox.Show("Az óradíj csak szám lehet!");
             }
+            else if (alsoH == null || felsoH == null)
+            {
+                MessageBox.Show("Kérem ellenőrizze az óradíjakat!");
+            }
             else
             {
                 if (alsoH < felsoH && alsoH % 1000 == 0 && felsoH % 1000 == 0)
                 {
                     connection.Open();
-                    SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = ) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = {this.szakterulet.SelectedValue}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+                    //SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
                     DataTable dt = new DataTable();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     dt.Load(sdr);
@@ -89,7 +94,15 @@ namespace Penzugyi_tanacsado
                 {
                     MessageBox.Show("Az alsó és felső határ csak 1000-rel osztható szám lehet!");
                 }
-            }            
+            }
+            //connection.Open();
+            ////SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = {this.szakterulet.SelectedValue}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+            //SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text})", connection);
+            //DataTable dt = new DataTable();
+            //SqlDataReader sdr = cmd.ExecuteReader();
+            //dt.Load(sdr);
+            //datagrid.ItemsSource = dt.DefaultView;
+            //connection.Close();
         }
 
         private void Szures_ki(object sender, RoutedEventArgs e)
@@ -108,6 +121,9 @@ namespace Penzugyi_tanacsado
             Environment.Exit(0);
         }
 
+        private void Exportalas(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

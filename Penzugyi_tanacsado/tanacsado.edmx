@@ -252,7 +252,7 @@ FROM [dbo].[AllData] AS [AllData]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="tanacsadoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="tanacsadoEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="szakterulet" EntityType="Self.szakterulet" />
           <EntitySet Name="talalkozo" EntityType="Self.talalkozo" />
           <EntitySet Name="tanacsado" EntityType="Self.tanacsado" />
@@ -280,7 +280,7 @@ FROM [dbo].[AllData] AS [AllData]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="tanacsadoModelStoreContainer" CdmEntityContainer="tanacsadoEntities">
+        <EntityContainerMapping StorageEntityContainer="tanacsadoModelStoreContainer" CdmEntityContainer="tanacsadoEntities2">
           <EntitySetMapping Name="szakterulet">
             <EntityTypeMapping TypeName="tanacsadoModel.szakterulet">
               <MappingFragment StoreEntitySet="szakterulet">

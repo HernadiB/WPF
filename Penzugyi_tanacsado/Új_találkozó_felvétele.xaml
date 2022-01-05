@@ -13,11 +13,11 @@
         <Label Content="Találkozó dátuma:" Name="tdatum" HorizontalAlignment="Left" Margin="61,194,0,0" VerticalAlignment="Top"/>
         <Label Content="Találkozó ideje:" Name="tide" HorizontalAlignment="Left" Margin="61,259,0,0" VerticalAlignment="Top"/>
         <Label Content="Találkozó időtartama:" Name="tido" HorizontalAlignment="Left" Margin="61,320,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Name="Tanacsado_neve" Margin="190,81,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Name="Tanacsado_neve" Margin="190,81,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="megnevezes" DisplayMemberPath="megnevezes" ItemsSource="{Binding}"/>
         <ComboBox HorizontalAlignment="Left" Name="Ugyfel_neve" Margin="190,135,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker HorizontalAlignment="Left" Name="Talalkozo_datuma" Margin="190,196,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Name="Talalkozo_ideje" Margin="190,263,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Name="Talalkozo_idotartama" Margin="190,324,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Talalkozo_ideje" Margin="190,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Talalkozo_idotartama" Margin="190,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Felvétel" Name="Talalkozo_felvetel" HorizontalAlignment="Left" Margin="63,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Felvetel"/>
         <Button Content="Mégse" HorizontalAlignment="Left" Margin="210,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Megse"/>
 

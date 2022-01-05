@@ -13,10 +13,10 @@ namespace Penzugyi_tanacsado
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class tanacsadoEntities : DbContext
+    public partial class tanacsadoEntities2 : DbContext
     {
-        public tanacsadoEntities()
-            : base("name=tanacsadoEntities")
+        public tanacsadoEntities2()
+            : base("name=tanacsadoEntities2")
         {
         }
     

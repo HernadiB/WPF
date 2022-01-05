@@ -33,7 +33,7 @@ namespace Penzugyi_tanacsado
 
         private void Bindc()
         {
-            tanacsadoEntities tanacs = new tanacsadoEntities();
+            tanacsadoEntities2 tanacs = new tanacsadoEntities2();
             var item = tanacs.szakterulet.ToList();
             megnevezes = item;
             DataContext = megnevezes;
