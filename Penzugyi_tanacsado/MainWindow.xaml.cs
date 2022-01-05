@@ -35,8 +35,8 @@ namespace Penzugyi_tanacsado
 
         private void Bindc()
         {
-            tanacsadoEntities2 tanacs = new tanacsadoEntities2();
-            var item = tanacs.szakterulet.ToList();
+            tanacsadoEntities2 szak = new tanacsadoEntities2();
+            var item = szak.szakterulet.ToList();
             megnevezes = item;
             DataContext = megnevezes;
         }
@@ -78,7 +78,7 @@ namespace Penzugyi_tanacsado
                 if (alsoH < felsoH && alsoH % 1000 == 0 && felsoH % 1000 == 0)
                 {
                     connection.Open();
-                    SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = {this.szakterulet.SelectedValue}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = '{this.szakterulet.SelectedValue}') ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
                     //SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
                     DataTable dt = new DataTable();
                     SqlDataReader sdr = cmd.ExecuteReader();

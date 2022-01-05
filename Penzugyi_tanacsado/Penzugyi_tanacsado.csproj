@@ -67,13 +67,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AllData.cs">
-      <DependentUpon>tanacsado.tt</DependentUpon>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
     </Compile>
     <Compile Include="szakterulet.cs">
-      <DependentUpon>tanacsado.tt</DependentUpon>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
     </Compile>
     <Compile Include="talalkozo.cs">
-      <DependentUpon>tanacsado.tt</DependentUpon>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.Context.cs">
       <AutoGen>True</AutoGen>
@@ -81,7 +81,7 @@
       <DependentUpon>tanacsado.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.cs">
-      <DependentUpon>tanacsado.tt</DependentUpon>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -99,7 +99,22 @@
       <DependentUpon>tanacsadoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ugyfel.cs">
-      <DependentUpon>tanacsado.tt</DependentUpon>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ugyfelneve.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ugyfelneve.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ugyfelneve.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ugyfelneve.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ugyfelneve.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ugyfelneve.edmx</DependentUpon>
     </Compile>
     <Compile Include="Új_találkozó_felvétele.xaml.cs">
       <DependentUpon>Új_találkozó_felvétele.xaml</DependentUpon>
@@ -162,6 +177,13 @@
     <None Include="tanacsadoDataSet.xss">
       <DependentUpon>tanacsadoDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="ugyfelneve.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ugyfelneve.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ugyfelneve.edmx.diagram">
+      <DependentUpon>ugyfelneve.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -179,6 +201,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>tanacsado.edmx</DependentUpon>
       <LastGenOutput>tanacsado1.cs</LastGenOutput>
+    </Content>
+    <Content Include="ugyfelneve.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ugyfelneve.edmx</DependentUpon>
+      <LastGenOutput>ugyfelneve.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ugyfelneve.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ugyfelneve.edmx</DependentUpon>
+      <LastGenOutput>ugyfelneve.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

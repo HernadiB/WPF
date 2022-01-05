@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tanacsadoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="szakterulet">
+          <Key>
+            <PropertyRef Name="szakterulet_id" />
+          </Key>
+          <Property Name="szakterulet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="megnevezes" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="talalkozo">
+          <Key>
+            <PropertyRef Name="talalkozo_id" />
+          </Key>
+          <Property Name="talalkozo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tanacsado_id" Type="int" />
+          <Property Name="ugyfel_id" Type="int" />
+          <Property Name="datum" Type="date" />
+          <Property Name="idopont" Type="time" Precision="7" />
+          <Property Name="idotartam" Type="int" />
+        </EntityType>
+        <EntityType Name="tanacsado">
+          <Key>
+            <PropertyRef Name="tanacsado_id" />
+          </Key>
+          <Property Name="tanacsado_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nev" Type="varchar" MaxLength="30" />
+          <Property Name="szakterulet_id" Type="int" />
+          <Property Name="oradij" Type="int" />
+          <Property Name="telefon" Type="varchar" MaxLength="14" />
+          <Property Name="email" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="ugyfel">
+          <Key>
+            <PropertyRef Name="ugyfel_id" />
+          </Key>
+          <Property Name="ugyfel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nev" Type="varchar" MaxLength="30" />
+          <Property Name="telefon" Type="varchar" MaxLength="14" />
+          <Property Name="email" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tanacsado.dbo.AllData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AllData">
+          <Key>
+            <PropertyRef Name="TalálkozóértFizetendőÖsszeg" />
+          </Key>
+          <Property Name="TalálkozóDátuma" Type="date" />
+          <Property Name="TalálkozóKezdésiIdőpontja" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ÜgyfélNeve" Type="varchar" MaxLength="30" />
+          <Property Name="TanácsadóNeve" Type="varchar" MaxLength="30" />
+          <Property Name="SzakterületMegnevezése" Type="varchar" MaxLength="40" />
+          <Property Name="TalálkozóIdőtartama" Type="int" />
+          <Property Name="TanácsadóÓradíja" Type="int" />
+          <Property Name="TalálkozóértFizetendőÖsszeg" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_talalkozo_tanacsado">
+          <End Role="tanacsado" Type="Self.tanacsado" Multiplicity="0..1" />
+          <End Role="talalkozo" Type="Self.talalkozo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tanacsado">
+              <PropertyRef Name="tanacsado_id" />
+            </Principal>
+            <Dependent Role="talalkozo">
+              <PropertyRef Name="tanacsado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talalkozo_ugyfel">
+          <End Role="ugyfel" Type="Self.ugyfel" Multiplicity="0..1" />
+          <End Role="talalkozo" Type="Self.talalkozo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ugyfel">
+              <PropertyRef Name="ugyfel_id" />
+            </Principal>
+            <Dependent Role="talalkozo">
+              <PropertyRef Name="ugyfel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tanacsado_szakterulet">
+          <End Role="szakterulet" Type="Self.szakterulet" Multiplicity="0..1" />
+          <End Role="tanacsado" Type="Self.tanacsado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="szakterulet">
+              <PropertyRef Name="szakterulet_id" />
+            </Principal>
+            <Dependent Role="tanacsado">
+              <PropertyRef Name="szakterulet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ugyfel_ugyfel">
+          <End Role="ugyfel" Type="Self.ugyfel" Multiplicity="1" />
+          <End Role="ugyfel1" Type="Self.ugyfel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ugyfel">
+              <PropertyRef Name="ugyfel_id" />
+            </Principal>
+            <Dependent Role="ugyfel1">
+              <PropertyRef Name="ugyfel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tanacsadoModel1StoreContainer">
+          <EntitySet Name="szakterulet" EntityType="Self.szakterulet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="talalkozo" EntityType="Self.talalkozo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tanacsado" EntityType="Self.tanacsado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ugyfel" EntityType="Self.ugyfel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllData" EntityType="Self.AllData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[AllData].[TalálkozóDátuma] AS [TalálkozóDátuma], 
+[AllData].[TalálkozóKezdésiIdőpontja] AS [TalálkozóKezdésiIdőpontja], 
+[AllData].[ÜgyfélNeve] AS [ÜgyfélNeve], 
+[AllData].[TanácsadóNeve] AS [TanácsadóNeve], 
+[AllData].[SzakterületMegnevezése] AS [SzakterületMegnevezése], 
+[AllData].[TalálkozóIdőtartama] AS [TalálkozóIdőtartama], 
+[AllData].[TanácsadóÓradíja] AS [TanácsadóÓradíja], 
+[AllData].[TalálkozóértFizetendőÖsszeg] AS [TalálkozóértFizetendőÖsszeg]
+FROM [dbo].[AllData] AS [AllData]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_talalkozo_tanacsado" Association="Self.FK_talalkozo_tanacsado">
+            <End Role="tanacsado" EntitySet="tanacsado" />
+            <End Role="talalkozo" EntitySet="talalkozo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talalkozo_ugyfel" Association="Self.FK_talalkozo_ugyfel">
+            <End Role="ugyfel" EntitySet="ugyfel" />
+            <End Role="talalkozo" EntitySet="talalkozo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tanacsado_szakterulet" Association="Self.FK_tanacsado_szakterulet">
+            <End Role="szakterulet" EntitySet="szakterulet" />
+            <End Role="tanacsado" EntitySet="tanacsado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ugyfel_ugyfel" Association="Self.FK_ugyfel_ugyfel">
+            <End Role="ugyfel" EntitySet="ugyfel" />
+            <End Role="ugyfel1" EntitySet="ugyfel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tanacsadoModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="szakterulet">
+          <Key>
+            <PropertyRef Name="szakterulet_id" />
+          </Key>
+          <Property Name="szakterulet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="megnevezes" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tanacsado" Relationship="Self.FK_tanacsado_szakterulet" FromRole="szakterulet" ToRole="tanacsado" />
+        </EntityType>
+        <EntityType Name="talalkozo">
+          <Key>
+            <PropertyRef Name="talalkozo_id" />
+          </Key>
+          <Property Name="talalkozo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tanacsado_id" Type="Int32" />
+          <Property Name="ugyfel_id" Type="Int32" />
+          <Property Name="datum" Type="DateTime" Precision="0" />
+          <Property Name="idopont" Type="Time" Precision="7" />
+          <Property Name="idotartam" Type="Int32" />
+          <NavigationProperty Name="tanacsado" Relationship="Self.FK_talalkozo_tanacsado" FromRole="talalkozo" ToRole="tanacsado" />
+          <NavigationProperty Name="ugyfel" Relationship="Self.FK_talalkozo_ugyfel" FromRole="talalkozo" ToRole="ugyfel" />
+        </EntityType>
+        <EntityType Name="tanacsado">
+          <Key>
+            <PropertyRef Name="tanacsado_id" />
+          </Key>
+          <Property Name="tanacsado_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nev" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="szakterulet_id" Type="Int32" />
+          <Property Name="oradij" Type="Int32" />
+          <Property Name="telefon" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="szakterulet" Relationship="Self.FK_tanacsado_szakterulet" FromRole="tanacsado" ToRole="szakterulet" />
+          <NavigationProperty Name="talalkozo" Relationship="Self.FK_talalkozo_tanacsado" FromRole="tanacsado" ToRole="talalkozo" />
+        </EntityType>
+        <EntityType Name="ugyfel">
+          <Key>
+            <PropertyRef Name="ugyfel_id" />
+          </Key>
+          <Property Name="ugyfel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nev" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="talalkozo" Relationship="Self.FK_talalkozo_ugyfel" FromRole="ugyfel" ToRole="talalkozo" />
+          <NavigationProperty Name="ugyfel1" Relationship="Self.FK_ugyfel_ugyfel" FromRole="ugyfel" ToRole="ugyfel1" />
+          <NavigationProperty Name="ugyfel2" Relationship="Self.FK_ugyfel_ugyfel" FromRole="ugyfel1" ToRole="ugyfel" />
+        </EntityType>
+        <EntityType Name="AllData">
+          <Key>
+            <PropertyRef Name="TalálkozóértFizetendőÖsszeg" />
+          </Key>
+          <Property Name="TalálkozóDátuma" Type="DateTime" Precision="0" />
+          <Property Name="TalálkozóKezdésiIdőpontja" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ÜgyfélNeve" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TanácsadóNeve" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SzakterületMegnevezése" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="TalálkozóIdőtartama" Type="Int32" />
+          <Property Name="TanácsadóÓradíja" Type="Int32" />
+          <Property Name="TalálkozóértFizetendőÖsszeg" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tanacsado_szakterulet">
+          <End Role="szakterulet" Type="Self.szakterulet" Multiplicity="0..1" />
+          <End Role="tanacsado" Type="Self.tanacsado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="szakterulet">
+              <PropertyRef Name="szakterulet_id" />
+            </Principal>
+            <Dependent Role="tanacsado">
+              <PropertyRef Name="szakterulet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talalkozo_tanacsado">
+          <End Role="tanacsado" Type="Self.tanacsado" Multiplicity="0..1" />
+          <End Role="talalkozo" Type="Self.talalkozo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tanacsado">
+              <PropertyRef Name="tanacsado_id" />
+            </Principal>
+            <Dependent Role="talalkozo">
+              <PropertyRef Name="tanacsado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_talalkozo_ugyfel">
+          <End Role="ugyfel" Type="Self.ugyfel" Multiplicity="0..1" />
+          <End Role="talalkozo" Type="Self.talalkozo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ugyfel">
+              <PropertyRef Name="ugyfel_id" />
+            </Principal>
+            <Dependent Role="talalkozo">
+              <PropertyRef Name="ugyfel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ugyfel_ugyfel">
+          <End Role="ugyfel" Type="Self.ugyfel" Multiplicity="1" />
+          <End Role="ugyfel1" Type="Self.ugyfel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ugyfel">
+              <PropertyRef Name="ugyfel_id" />
+            </Principal>
+            <Dependent Role="ugyfel1">
+              <PropertyRef Name="ugyfel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tanacsadoEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="szakterulet" EntityType="Self.szakterulet" />
+          <EntitySet Name="talalkozo" EntityType="Self.talalkozo" />
+          <EntitySet Name="tanacsado" EntityType="Self.tanacsado" />
+          <EntitySet Name="ugyfel" EntityType="Self.ugyfel" />
+          <EntitySet Name="AllData" EntityType="Self.AllData" />
+          <AssociationSet Name="FK_tanacsado_szakterulet" Association="Self.FK_tanacsado_szakterulet">
+            <End Role="szakterulet" EntitySet="szakterulet" />
+            <End Role="tanacsado" EntitySet="tanacsado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talalkozo_tanacsado" Association="Self.FK_talalkozo_tanacsado">
+            <End Role="tanacsado" EntitySet="tanacsado" />
+            <End Role="talalkozo" EntitySet="talalkozo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_talalkozo_ugyfel" Association="Self.FK_talalkozo_ugyfel">
+            <End Role="ugyfel" EntitySet="ugyfel" />
+            <End Role="talalkozo" EntitySet="talalkozo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ugyfel_ugyfel" Association="Self.FK_ugyfel_ugyfel">
+            <End Role="ugyfel" EntitySet="ugyfel" />
+            <End Role="ugyfel1" EntitySet="ugyfel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tanacsadoModel1StoreContainer" CdmEntityContainer="tanacsadoEntities3">
+          <EntitySetMapping Name="szakterulet">
+            <EntityTypeMapping TypeName="tanacsadoModel1.szakterulet">
+              <MappingFragment StoreEntitySet="szakterulet">
+                <ScalarProperty Name="szakterulet_id" ColumnName="szakterulet_id" />
+                <ScalarProperty Name="megnevezes" ColumnName="megnevezes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="talalkozo">
+            <EntityTypeMapping TypeName="tanacsadoModel1.talalkozo">
+              <MappingFragment StoreEntitySet="talalkozo">
+                <ScalarProperty Name="talalkozo_id" ColumnName="talalkozo_id" />
+                <ScalarProperty Name="tanacsado_id" ColumnName="tanacsado_id" />
+                <ScalarProperty Name="ugyfel_id" ColumnName="ugyfel_id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="idopont" ColumnName="idopont" />
+                <ScalarProperty Name="idotartam" ColumnName="idotartam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tanacsado">
+            <EntityTypeMapping TypeName="tanacsadoModel1.tanacsado">
+              <MappingFragment StoreEntitySet="tanacsado">
+                <ScalarProperty Name="tanacsado_id" ColumnName="tanacsado_id" />
+                <ScalarProperty Name="nev" ColumnName="nev" />
+                <ScalarProperty Name="szakterulet_id" ColumnName="szakterulet_id" />
+                <ScalarProperty Name="oradij" ColumnName="oradij" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ugyfel">
+            <EntityTypeMapping TypeName="tanacsadoModel1.ugyfel">
+              <MappingFragment StoreEntitySet="ugyfel">
+                <ScalarProperty Name="ugyfel_id" ColumnName="ugyfel_id" />
+                <ScalarProperty Name="nev" ColumnName="nev" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllData">
+            <EntityTypeMapping TypeName="tanacsadoModel1.AllData">
+              <MappingFragment StoreEntitySet="AllData">
+                <ScalarProperty Name="TalálkozóDátuma" ColumnName="TalálkozóDátuma" />
+                <ScalarProperty Name="TalálkozóKezdésiIdőpontja" ColumnName="TalálkozóKezdésiIdőpontja" />
+                <ScalarProperty Name="ÜgyfélNeve" ColumnName="ÜgyfélNeve" />
+                <ScalarProperty Name="TanácsadóNeve" ColumnName="TanácsadóNeve" />
+                <ScalarProperty Name="SzakterületMegnevezése" ColumnName="SzakterületMegnevezése" />
+                <ScalarProperty Name="TalálkozóIdőtartama" ColumnName="TalálkozóIdőtartama" />
+                <ScalarProperty Name="TanácsadóÓradíja" ColumnName="TanácsadóÓradíja" />
+                <ScalarProperty Name="TalálkozóértFizetendőÖsszeg" ColumnName="TalálkozóértFizetendőÖsszeg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

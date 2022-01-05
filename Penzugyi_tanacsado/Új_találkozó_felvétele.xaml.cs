@@ -23,20 +23,31 @@ namespace Penzugyi_tanacsado
     {
         SqlConnection connection = new SqlConnection(@"Data Source=HERNADI;Initial Catalog=tanacsado;Integrated Security=True");
 
-        public List<szakterulet> megnevezes { get; set; }
+        public List<tanacsado> tanacsadoNeve { get; set; }
+        public List<ugyfel> ugyfelNeve { get; set; }
 
         public Új_találkozó_felvétele()
         {
             InitializeComponent();
             Bindc();
+            Bindu();
+        }
+
+        private void Bindu()
+        {
+            tanacsadoEntities3 ugyfel_neve = new tanacsadoEntities3();
+            var item = ugyfel_neve.ugyfel.ToList();
+            ugyfelNeve = item;
+            DataContext = ugyfelNeve;
         }
 
         private void Bindc()
         {
-            tanacsadoEntities2 tanacs = new tanacsadoEntities2();
-            var item = tanacs.szakterulet.ToList();
-            megnevezes = item;
-            DataContext = megnevezes;
+            tanacsadoEntities2 tanacsado_neve = new tanacsadoEntities2();
+            var item = tanacsado_neve.tanacsado.ToList();
+            tanacsadoNeve = item;
+            DataContext = tanacsadoNeve;
+
         }
 
         private void Felvetel(object sender, RoutedEventArgs e)
