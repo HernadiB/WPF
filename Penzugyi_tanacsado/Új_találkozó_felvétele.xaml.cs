@@ -22,6 +22,9 @@ namespace Penzugyi_tanacsado
     public partial class Új_találkozó_felvétele : Window
     {
         SqlConnection connection = new SqlConnection(@"Data Source=HERNADI;Initial Catalog=tanacsado;Integrated Security=True");
+        SqlCommand comTanacsado = new SqlCommand();
+        SqlCommand comUgyfel = new SqlCommand();
+        SqlCommand comTalalkozo = new SqlCommand();
 
         public List<tanacsado> tanacsadoNeve { get; set; }
         public List<ugyfel> ugyfelNeve { get; set; }
@@ -29,30 +32,52 @@ namespace Penzugyi_tanacsado
         public Új_találkozó_felvétele()
         {
             InitializeComponent();
-            Bindc();
+            Bindt();
             Bindu();
         }
-
-        private void Bindu()
+        private void Bindt()
         {
-            tanacsadoEntities3 ugyfel_neve = new tanacsadoEntities3();
-            var item = ugyfel_neve.ugyfel.ToList();
-            ugyfelNeve = item;
-            DataContext = ugyfelNeve;
-        }
-
-        private void Bindc()
-        {
-            tanacsadoEntities2 tanacsado_neve = new tanacsadoEntities2();
-            var item = tanacsado_neve.tanacsado.ToList();
+            tanacsadoEntities4 tanacsadoneve = new tanacsadoEntities4();
+            var item = tanacsadoneve.tanacsado.ToList();
             tanacsadoNeve = item;
             DataContext = tanacsadoNeve;
 
         }
 
+        private void Bindu()
+        {
+            tanacsadoEntities3 ugyfelneve = new tanacsadoEntities3();
+            var item = ugyfelneve.ugyfel.ToList();
+            ugyfelNeve = item;
+            DataContext = ugyfelNeve;
+        }
+
         private void Felvetel(object sender, RoutedEventArgs e)
         {
+            comTanacsado.Connection = connection;
+            comUgyfel.Connection = connection;
+            comTalalkozo.Connection = connection;
 
+            connection.Open();
+
+            comTanacsado.CommandText = @"INSERT INTO tanacsado (nev) VALUES (@tnev)";
+            comTanacsado.Parameters.AddWithValue("@tnev", Tanacsado_neve.SelectedValue);
+            comTanacsado.ExecuteNonQuery();
+
+            comUgyfel.CommandText = @"INSERT INTO ugyfel (nev) VALUES (@unev)";
+            comUgyfel.Parameters.AddWithValue("@unev", Ugyfel_neve.SelectedValue);
+            comUgyfel.ExecuteNonQuery();
+
+            comTalalkozo.CommandText = @"INSERT INTO talalkozo (datum, idopont, idotartam) VALUES (@datum, @idopont, @idotartam)";
+            comTalalkozo.Parameters.AddWithValue("@datum", Talalkozo_datuma.SelectedDate);
+            comTalalkozo.Parameters.AddWithValue("@idopont", Talalkozo_ideje.Text);
+            comTalalkozo.Parameters.AddWithValue("@idotartam", Convert.ToInt32(Talalkozo_idotartama.Text));
+            comTalalkozo.ExecuteNonQuery();
+
+            connection.Close();
+
+            MessageBox.Show("Az adatok sikeresen elmentve!");
+            this.Close();
         }
 
         private void Megse(object sender, RoutedEventArgs e)

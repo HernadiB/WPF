@@ -67,13 +67,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AllData.cs">
-      <DependentUpon>ugyfelneve.tt</DependentUpon>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
     </Compile>
     <Compile Include="szakterulet.cs">
-      <DependentUpon>ugyfelneve.tt</DependentUpon>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
     </Compile>
     <Compile Include="talalkozo.cs">
-      <DependentUpon>ugyfelneve.tt</DependentUpon>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.Context.cs">
       <AutoGen>True</AutoGen>
@@ -81,7 +81,7 @@
       <DependentUpon>tanacsado.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.cs">
-      <DependentUpon>ugyfelneve.tt</DependentUpon>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
     </Compile>
     <Compile Include="tanacsado.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,8 +98,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>tanacsadoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="tanacsadon.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tanacsadon.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tanacsadon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tanacsadon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tanacsadon.edmx</DependentUpon>
+    </Compile>
     <Compile Include="ugyfel.cs">
-      <DependentUpon>ugyfelneve.tt</DependentUpon>
+      <DependentUpon>tanacsadon.tt</DependentUpon>
     </Compile>
     <Compile Include="ugyfelneve.Context.cs">
       <AutoGen>True</AutoGen>
@@ -181,6 +196,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ugyfelneve.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="tanacsadon.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>tanacsadon.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="tanacsadon.edmx.diagram">
+      <DependentUpon>tanacsadon.edmx</DependentUpon>
+    </None>
     <None Include="ugyfelneve.edmx.diagram">
       <DependentUpon>ugyfelneve.edmx</DependentUpon>
     </None>
@@ -201,6 +223,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>tanacsado.edmx</DependentUpon>
       <LastGenOutput>tanacsado1.cs</LastGenOutput>
+    </Content>
+    <Content Include="tanacsadon.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>tanacsadon.edmx</DependentUpon>
+      <LastGenOutput>tanacsadon.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="tanacsadon.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>tanacsadon.edmx</DependentUpon>
+      <LastGenOutput>tanacsadon.cs</LastGenOutput>
     </Content>
     <Content Include="ugyfelneve.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
