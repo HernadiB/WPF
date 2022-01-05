@@ -59,12 +59,12 @@ namespace Penzugyi_tanacsado
 
             connection.Open();
 
-            comTanacsado.CommandText = @"INSERT INTO tanacsado (nev) VALUES (@tnev)";
-            comTanacsado.Parameters.AddWithValue("@tnev", Tanacsado_neve.SelectedValue);
+            comTanacsado.CommandText = @"INSERT INTO tanacsado (nev) VALUES (@tneve)";
+            comTanacsado.Parameters.AddWithValue("@tneve", Tanacsado_neve.SelectedValue);
             comTanacsado.ExecuteNonQuery();
 
-            comUgyfel.CommandText = @"INSERT INTO ugyfel (nev) VALUES (@unev)";
-            comUgyfel.Parameters.AddWithValue("@unev", Ugyfel_neve.SelectedValue);
+            comUgyfel.CommandText = @"INSERT INTO ugyfel (nev) VALUES (@uneve)";
+            comUgyfel.Parameters.AddWithValue("@uneve", Ugyfel_neve.SelectedValue);
             comUgyfel.ExecuteNonQuery();
 
             comTalalkozo.CommandText = @"INSERT INTO talalkozo (datum, idopont, idotartam) VALUES (@datum, @idopont, @idotartam)";
