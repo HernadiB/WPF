@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Penzugyi_tanacsado
 {
     /// <summary>
-    /// Interaction logic for SecoundWindow.xaml
+    /// Interaction logic for Új_találkozó_felvétele.xaml
     /// </summary>
-    public partial class SecoundWindow : Window
+    public partial class Új_találkozó_felvétele : Window
     {
-        public SecoundWindow()
+        public Új_találkozó_felvétele()
         {
             InitializeComponent();
         }

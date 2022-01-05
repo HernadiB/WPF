@@ -1,0 +1,25 @@
+﻿<Window x:Class="Penzugyi_tanacsado.Új_találkozó_felvétele"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Penzugyi_tanacsado"
+        mc:Ignorable="d"
+        Title="Új_találkozó_felvétele" Height="450" Width="386">
+    <Grid Background="#FFAFF3EE" Margin="0,0,0,-6">
+        <Label Content="Új találkozó felvétele" Name="felvetel" HorizontalAlignment="Left" Margin="95,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Tanácsadó neve:" Name="tnev" HorizontalAlignment="Left" Margin="61,77,0,0" VerticalAlignment="Top" Width="115"/>
+        <Label Content="Ügyfél neve:" Name="unev" HorizontalAlignment="Left" Margin="61,133,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label Content="Találkozó dátuma:" Name="tdatum" HorizontalAlignment="Left" Margin="61,194,0,0" VerticalAlignment="Top"/>
+        <Label Content="Találkozó ideje:" Name="tide" HorizontalAlignment="Left" Margin="61,259,0,0" VerticalAlignment="Top"/>
+        <Label Content="Találkozó időtartama:" Name="tido" HorizontalAlignment="Left" Margin="61,320,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Name="Tanacsado_neve" Margin="190,81,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Name="Ugyfel_neve" Margin="190,135,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker HorizontalAlignment="Left" Name="Talalkozo_datuma" Margin="190,196,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Talalkozo_ideje" Margin="190,263,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="Talalkozo_idotartama" Margin="190,324,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Felvétel" Name="Talalkozo_felvetel" HorizontalAlignment="Left" Margin="63,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Felvetel"/>
+        <Button Content="Mégse" Name="Megse" HorizontalAlignment="Left" Margin="210,373,0,0" VerticalAlignment="Top" Width="100" Height="41" Background="#FFF3F48D" Click="Megse"/>
+
+    </Grid>
+</Window>
