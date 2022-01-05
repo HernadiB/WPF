@@ -33,7 +33,7 @@ namespace Penzugyi_tanacsado
         {
             InitializeComponent();
             Bindt();
-            //Bindu();
+            Bindu();
         }
         private void Bindt()
         {
@@ -43,13 +43,13 @@ namespace Penzugyi_tanacsado
             DataContext = tanacsadoNeve;
         }
 
-        //private void Bindu()
-        //{
-        //    tanacsadoEntities3 ugyfelneve = new tanacsadoEntities3();
-        //    var item = ugyfelneve.ugyfel.ToList();
-        //    ugyfelNeve = item;
-        //    DataContext = ugyfelNeve;
-        //}
+        private void Bindu()
+        {
+            tanacsadoEntities4 ugyfelneve = new tanacsadoEntities4();
+            var item = ugyfelneve.ugyfel.ToList();
+            ugyfelNeve = item;
+            DataContext = ugyfelNeve;
+        }
 
         private void Felvetel(object sender, RoutedEventArgs e)
         {
@@ -59,12 +59,12 @@ namespace Penzugyi_tanacsado
 
             connection.Open();
 
-            comTanacsado.CommandText = @"INSERT INTO tanacsado (nev) VALUES (@tneve)";
-            comTanacsado.Parameters.AddWithValue("@tneve", Tanacsado_neve.SelectedValue);
+            comTanacsado.CommandText = @"INSERT INTO tanacsado (nev) VALUES (@tanacsado_id)";
+            comTanacsado.Parameters.AddWithValue("@tanacsado_id", Tanacsado_neve.SelectedValue);
             comTanacsado.ExecuteNonQuery();
 
-            comUgyfel.CommandText = @"INSERT INTO ugyfel (nev) VALUES (@uneve)";
-            comUgyfel.Parameters.AddWithValue("@uneve", Ugyfel_neve.SelectedValue);
+            comUgyfel.CommandText = @"INSERT INTO ugyfel (nev) VALUES (@ugyfel_id)";
+            comUgyfel.Parameters.AddWithValue("@ugyfel_id", Ugyfel_neve.SelectedValue);
             comUgyfel.ExecuteNonQuery();
 
             comTalalkozo.CommandText = @"INSERT INTO talalkozo (datum, idopont, idotartam) VALUES (@datum, @idopont, @idotartam)";

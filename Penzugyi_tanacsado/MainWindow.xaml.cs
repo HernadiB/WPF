@@ -79,7 +79,6 @@ namespace Penzugyi_tanacsado
                 {
                     connection.Open();
                     SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = '{this.szakterulet.SelectedValue}') ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
-                    //SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
                     DataTable dt = new DataTable();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     dt.Load(sdr);
@@ -95,14 +94,6 @@ namespace Penzugyi_tanacsado
                     MessageBox.Show("Az alsó és felső határ csak 1000-rel osztható szám lehet!");
                 }
             }
-            //connection.Open();
-            ////SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text}) AND (SzakterületMegnevezése = {this.szakterulet.SelectedValue}) ORDER BY SzakterületMegnevezése, TanácsadóNeve, TalálkozóDátuma DESC", connection);
-            //SqlCommand cmd = new SqlCommand($"SELECT * FROM AllData WHERE (TanácsadóÓradíja BETWEEN {this.Oradij_also_hatara.Text} AND {this.Oradij_felso_hatara.Text})", connection);
-            //DataTable dt = new DataTable();
-            //SqlDataReader sdr = cmd.ExecuteReader();
-            //dt.Load(sdr);
-            //datagrid.ItemsSource = dt.DefaultView;
-            //connection.Close();
         }
 
         private void Szures_ki(object sender, RoutedEventArgs e)
@@ -123,7 +114,18 @@ namespace Penzugyi_tanacsado
 
         private void Exportalas(object sender, RoutedEventArgs e)
         {
-
+            int alsoH = (int)Convert.ToInt32(Oradij_also_hatara.Text);
+            int felsoH = (int)Convert.ToInt32(Oradij_felso_hatara.Text);
+            DataGrid dg = datagrid;
+            dg.SelectAllCells();
+            dg.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, dg);
+            datagrid.UnselectAllCells();
+            String result = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            StreamWriter sw = new StreamWriter($"tanacsadok_{szakterulet.SelectedValue}_({alsoH}-{felsoH} Ft)_{DateTime.Now:yyyy-MM-dd}.csv");
+            sw.WriteLine(result);
+            sw.Close();
+            MessageBox.Show("Az adatok sikeresen elmentve!");
         }
     }
 }
