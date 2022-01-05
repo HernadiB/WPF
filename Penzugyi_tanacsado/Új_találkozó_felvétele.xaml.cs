@@ -33,7 +33,7 @@ namespace Penzugyi_tanacsado
         {
             InitializeComponent();
             Bindt();
-            Bindu();
+            //Bindu();
         }
         private void Bindt()
         {
@@ -41,16 +41,15 @@ namespace Penzugyi_tanacsado
             var item = tanacsadoneve.tanacsado.ToList();
             tanacsadoNeve = item;
             DataContext = tanacsadoNeve;
-
         }
 
-        private void Bindu()
-        {
-            tanacsadoEntities3 ugyfelneve = new tanacsadoEntities3();
-            var item = ugyfelneve.ugyfel.ToList();
-            ugyfelNeve = item;
-            DataContext = ugyfelNeve;
-        }
+        //private void Bindu()
+        //{
+        //    tanacsadoEntities3 ugyfelneve = new tanacsadoEntities3();
+        //    var item = ugyfelneve.ugyfel.ToList();
+        //    ugyfelNeve = item;
+        //    DataContext = ugyfelNeve;
+        //}
 
         private void Felvetel(object sender, RoutedEventArgs e)
         {
