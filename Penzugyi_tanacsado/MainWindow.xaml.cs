@@ -15,6 +15,12 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
+using Syncfusion.UI.Xaml.Grid.Converter;
+using System.Windows.Controls.Primitives;
+using System.Diagnostics;
+using Syncfusion.XlsIO;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace Penzugyi_tanacsado
 {
@@ -125,7 +131,7 @@ namespace Penzugyi_tanacsado
             StreamWriter sw = new StreamWriter($"tanacsadok_{szakterulet.SelectedValue}_({alsoH}-{felsoH} Ft)_{DateTime.Now:yyyy-MM-dd}.csv");
             sw.WriteLine(result);
             sw.Close();
-            MessageBox.Show("Az adatok sikeresen elmentve!");
+            MessageBox.Show("Az adatok sikeresen másolva a vágólapra!");
         }
     }
 }
