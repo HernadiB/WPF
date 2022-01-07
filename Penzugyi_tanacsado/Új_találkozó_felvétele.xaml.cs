@@ -40,15 +40,15 @@ namespace Penzugyi_tanacsado
             tanacsadoEntities4 tanacsadoneve = new tanacsadoEntities4();
             var item = tanacsadoneve.tanacsado.ToList();
             tanacsadoNeve = item;
-            DataContext = tanacsadoNeve;
+            Tanacsado_neve.ItemsSource = tanacsadoNeve;
         }
 
         private void Bindu()
         {
-            tanacsadoEntities4 ugyfelneve = new tanacsadoEntities4();
+            tanacsadoEntities3 ugyfelneve = new tanacsadoEntities3();
             var item = ugyfelneve.ugyfel.ToList();
             ugyfelNeve = item;
-            DataContext = ugyfelNeve;
+            Ugyfel_neve.ItemsSource = ugyfelNeve;
         }
 
         private void Felvetel(object sender, RoutedEventArgs e)
